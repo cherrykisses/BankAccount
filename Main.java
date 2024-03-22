@@ -18,7 +18,8 @@ public class Main {
 
     // Implementation of console menu
     public void run() {
-        do {
+        while (true) {
+            System.out.println("Welcome to the bank. Please select an option to proceed.");
             System.out.println("1. View all bank accounts");
             System.out.println("2. Search for an account by account number");
             System.out.println("3. Deposit money into an account");
@@ -76,6 +77,6 @@ public class Main {
                 default:
                     System.out.println("Invalid choice");
             }
-        } while (true);
+        }
     }
 }

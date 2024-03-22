@@ -23,15 +23,16 @@ class AccountManager {
         }
 
     // Method that loads a CSV file
-    public void loadAccountsFromFile(String filepath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+     public void loadAccountsFromFile(String filereader) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:/users/marym/OneDrive/Documents/bank_accounts.csv"))) {
             String line;
-            StringBuilder content = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                content.append(line).append("\n");
-                String[] values = line.split(",");
-                BankAccount account = newBankAccount(values[0], values[1], values[2], Double.parseDouble(values[3]));
-                accounts.add(account);
+            // Skip the header row if it exists
+            if ((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+                    BankAccount account = newBankAccount(values[0], values[1], values[2], Double.parseDouble(values[3]));
+                    accounts.add(account);
+                }
             }
         } catch (IOException e) {
             System.out.println("Failed to load the CSV file: " + e.getMessage());
