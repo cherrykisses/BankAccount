@@ -17,11 +17,11 @@ class BankAccount {
     // Implement the toString method to display account information
     @Override
     public String toString() {
-        return "Account Number{" +
+        return "Account Number=" + accountNumber + '\'' +
                 "Account Holder Name='" + accountHolderName + '\'' +
                 ", Account Type='" + accountType + '\'' +
                 ", Balance:='" + balance + '\'' +
-                '}';
+                "";
     }
 
     // Getters and Setters (if necessary)

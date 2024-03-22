@@ -6,13 +6,15 @@ import java.io.IOException;
 // Define the AccountManager class
 class AccountManager {
     
+    // Declare private ArrayList to store all BankAccount objects
     private ArrayList<BankAccount> accounts;
 
+    // Constructor for the AccountManager class.
     public AccountManager() {
         accounts = new ArrayList<>();
     }
 
-    // Helper method to create a new BankAccount object
+    // Method to create a new BankAccount object
     public static BankAccount newBankAccount(String accountNumber, String accountHolderName, String accountType, double balance) {
     return new BankAccount(accountNumber, accountHolderName, accountType, balance);
 }
@@ -22,11 +24,10 @@ class AccountManager {
             accounts.add(account);
         }
 
-    // Method that loads a CSV file
+    // Method that loads a CSV file and creates BankAccount objects for each record
      public void loadAccountsFromFile(String filereader) {
         try (BufferedReader br = new BufferedReader(new FileReader("C:/users/marym/OneDrive/Documents/bank_accounts.csv"))) {
             String line;
-            // Skip the header row if it exists
             if ((line = br.readLine()) != null) {
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(",");
@@ -49,6 +50,7 @@ class AccountManager {
         return null;
     }
 
+    // ArrayList to store all bank records
     public ArrayList<BankAccount> getAccounts() {
         return accounts;
     }
