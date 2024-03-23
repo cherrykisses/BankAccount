@@ -57,15 +57,23 @@ class AccountManager {
 
     // Method to deposit money into a bank account
     public void deposit(BankAccount account, double amount) {
-        account.setbalance(account.getbalance() + amount);
+        if (amount <= 0) {
+            System.out.println("Cannot deposit a negative or empty amount. Please try again.");
+        } else if (amount > 0) {
+            account.setbalance(account.getbalance() + amount);
+        } else {
+            System.out.println("Please try again.");
+        }
     }
 
     // Method to withdraw money from a bank account
     public void withdraw(BankAccount account, double amount) {
-        if (account.getbalance() - amount >= 0) {
+        if (account.getbalance() - amount < 0) {
+            System.out.println("Insufficient balance.");
+        } else if (account.getbalance() - amount >= 0) {
             account.setbalance(account.getbalance() - amount);
         } else {
-            System.out.println("Insufficient balance");
+            System.out.println("Please try again.");
         }
     }
 }

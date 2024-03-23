@@ -66,8 +66,12 @@ public class Main {
                     if (account != null) {
                         System.out.print("Enter amount to deposit: ");
                         double amount = scanner.nextDouble();
-                        accountManager.deposit(account, amount);
-                        System.out.println("Deposit successful");
+                        if (amount > 0) {
+                            accountManager.deposit(account, amount);
+                            System.out.println("Deposit successful");
+                        } else if (amount <= 0) {
+                            System.out.println("Cannot deposit that amount. Please try again.");
+                        }
                     } else {
                         System.out.println("Account not found");
                     }
@@ -80,15 +84,19 @@ public class Main {
                     if (account != null) {
                         System.out.print("Enter amount to withdraw: ");
                         double amount = scanner.nextDouble();
-                        accountManager.withdraw(account, amount);
+                        if (account.getbalance() - amount >= 0) {
+                            accountManager.withdraw(account, amount);
                         System.out.println("Withdrawal successful");
+                        } else if (account.getbalance() - amount < 0){
+                            System.out.println("Withdrawal must not be greater than account balance. Please try again.");
+                        }
                     } else {
                         System.out.println("Account not found");
                     }
                     break;
                 case 5:
                     // Exit the application
-                    System.out.println("Exiting...");
+                    System.out.println("Thank you for doing business with us. Exiting...");
                     scanner.close();
                     System.exit(0);
                 default:
